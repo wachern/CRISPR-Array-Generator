@@ -67,7 +67,6 @@ class Array(object):
         sheet_1.cell(row=1 , column=2).value = "self-target error (TTC cut site within gRNA)"
         sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
         sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
-        #starting a count
         for grna in grnas:
             cell = cell + 1
             #Removing CRISPR cut site within gRNA if present
@@ -171,6 +170,6 @@ class Array(object):
             sheet_2.cell(row = 12, column = 3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
             sheet_2.cell(row = 13, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
             sheet_2.cell(row = 13, column = 2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
-        excel_output.save('grnacheck.xlsx')
+    	excel_output.save('grnacheck.xlsx')
 
 
