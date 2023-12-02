@@ -21,7 +21,7 @@ def doSetup(install_requires):
         install_requires = install_requires,
         include_package_data=True,
         #classifiers=[
-            'Development Status :: 2 - Pre-Alpha',
+            'Development Status :: 3 - Alpha',
             'Intended Audience :: Science/Research',
             'Topic :: Scientific/Engineering',
             'License :: OSI Approved :: MIT License', 
