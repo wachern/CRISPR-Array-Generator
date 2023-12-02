@@ -85,7 +85,7 @@ class Array(object):
             c3 = sheet_1.cell(row = cell+1, column = 1)
             c3.value = grna
         return(new_grnas)
-        #excel_output.save('grnacheck.xlsx')
+        excel_output.save('grnacheck.xlsx')
 
     def getArrayFromgRNAs(excel_file):
         """
@@ -170,6 +170,6 @@ class Array(object):
             sheet_2.cell(row = 12, column = 3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
             sheet_2.cell(row = 13, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
             sheet_2.cell(row = 13, column = 2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
-    	excel_output.save('grnacheck.xlsx')
+        excel_output.save('grnacheck.xlsx')
 
 
