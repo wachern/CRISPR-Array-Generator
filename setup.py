@@ -3,7 +3,7 @@ from setuptools import
 with open("README.md", "r") as fh:
     long_description = fh.read() 
 
-INSTALL_REQUIRES = "openpyxl"
+INSTALL_REQUIRES = []
 
 def doSetup(install_requires):
     setup(
