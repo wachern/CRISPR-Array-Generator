@@ -87,7 +87,7 @@ class Array(object):
         return(new_grnas)
         excel_output.save('grnacheck.xlsx')
 
-    def getArrayFromgRNAs(excel_file):
+    def get_array(excel_file):
         """
         Generates ready-to-order oligos from input gRNAs listed on an excel file
         Args:
@@ -96,7 +96,7 @@ class Array(object):
             excel file listing ready-to-order oligos for each set of gRNAs and any errors if present
         """
         revcomp_grnas = []
-        new_grnas = checkgrna(excel_file)
+        new_grnas = check_grna(excel_file)
         excel_output = load_workbook("grnacheck.xlsx")
         sheet_2 = excel_output.create_sheet("Array")
         sheet_2.cell(row=1 , column=2).value = "Full array fwd:"
