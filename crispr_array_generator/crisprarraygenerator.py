@@ -30,8 +30,8 @@ class Array(object):
         # Isolating DNA values
         for input in exceldata:
             valid_dna = all(i in cn.VALID_DNA for i in input)
-        if valid_dna == True:
-            grnas.append(input)
+            if valid_dna == True:
+                grnas.append(input)
         return grnas
 
     def get_reverse_complement(dna):
