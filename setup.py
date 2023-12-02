@@ -20,7 +20,7 @@ def doSetup(install_requires):
             'crispr_array_generator'},
         install_requires = install_requires,
         include_package_data=True,
-        classifiers=[
+        #classifiers=[
             'Development Status :: 2 - Pre-Alpha',
             'Intended Audience :: Science/Research',
             'Topic :: Scientific/Engineering',
