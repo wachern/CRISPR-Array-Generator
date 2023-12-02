@@ -15,9 +15,9 @@ def doSetup(install_requires):
         description='A tool to automate the design of CRISPR Cas12 arrays',
         long_description=long_description,
         long_description_content_type='text/markdown',
-        packages=['crispr_array_generator'],
+        packages=['crisprarraygenerator'],
         package_dir={'crispr_array_generator':
-            'crispr_array_generator'},
+            'crisprarraygenerator'},
         install_requires = install_requires,
         include_package_data=True,
         classifiers=[
