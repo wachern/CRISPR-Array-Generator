@@ -7,11 +7,13 @@ from openpyxl import Workbook
 class Array(object):
     def extract_excel_data(excel_file):
         """
-        Exracts all data from an excel file and isolates DNA components
+        Exracts all data from an excel file and isolates DNA
+        components
         Args:
-        string: name of excel file listing guide RNAs in 5' to 3' format
+            string: name of excel file listing guide RNAs in 5' 
+            to 3' format
         Returns:
-        array: all DNA components listed in the input excel file
+            array: all DNA components listed in the input excel file
         """
         
         excel_file = excel_file+".xlsx"
@@ -36,7 +38,8 @@ class Array(object):
 
     def get_reverse_complement(dna):
         """
-        Converts a 5' to 3' DNA string into its 3' to 5' reverse complement
+        Converts a 5' to 3' DNA string into its 3' to 5' reverse 
+        complement
         Args:
             string: DNA to be converted
         Returns:
@@ -48,11 +51,14 @@ class Array(object):
 
     def check_grna(excel_file):
         """
-        Takes gRNAs listed in an excel file and checks them for self-targeting or length errors
+        Takes gRNAs listed in an excel file and checks them for 
+        self-targeting or length errors
         Args:
-            string: name of excel file listing guide RNAs in 5' to 3' format
+            string: name of excel file listing guide RNAs in 5' 
+            to 3' format
         Returns:
-            file: excel file listing processed gRNAs and errors if found
+            file: excel file listing processed gRNAs and errors 
+            if found
         """
         grnas = Array.extract_excel_data(excel_file)
         new_grnas = []
@@ -64,9 +70,13 @@ class Array(object):
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
         sheet_1.cell(row=1 , column=1).value = "gRNAs"
-        sheet_1.cell(row=1 , column=2).value = "self-target error (TTC cut site within gRNA)"
-        sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
-        sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
+        sheet_1.cell(row=1 , column=2).value = "self-target error
+                                                (TTC cut site within
+                                                 gRNA)"
+        sheet_1.cell(row=1 , column=3).value = "length error 
+                                                (>24 nucleotides)"
+        sheet_1.cell(row=1 , column=4).value = "length error 
+                                                (<20 nucleotides)"
         for grna in grnas:
             cell = cell + 1
             #Removing CRISPR cut site within gRNA if present
@@ -89,11 +99,14 @@ class Array(object):
 
     def get_array(excel_file):
         """
-        Generates ready-to-order oligos from input gRNAs listed on an excel file
+        Generates ready-to-order oligos from input gRNAs listed on an 
+        excel file
         Args:
-            string: name of excel file listing guide RNAs in 5' to 3' format 
+            string: name of excel file listing guide RNAs in 5' to 3'
+            format 
         Returns:
-            excel file listing ready-to-order oligos for each set of gRNAs and any errors if present
+            excel file listing ready-to-order oligos for each set of 
+            gRNAs and any errors if present
         """
         revcomp_grnas = []
         new_grnas = Array.check_grna(excel_file)
@@ -108,24 +121,31 @@ class Array(object):
         sheet_2.cell(row=4 , column=3).value = "Rev oligos:"
         number = len(new_grnas)
         if number > 9:
-            sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
+            sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs
+                                                    were identified. 
+                                                    Please input 9 or
+                                                    fewer gRNAs per
+                                                    array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
         for grna in new_grnas:
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
         if number >= 1 and number <= 9:
-            sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
+            sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" 
+                                                    + new_grnas[0]
             if number == 1:
-                sheet_2.cell(row = 5, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-                #sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
-                #sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row = 5, column = 3).value = "CGTT" + revcomp_grnas[0]
+                                                        + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT"
+                                                        + new_grnas[0]
+                sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
         if number >= 2 and number <=9:
             sheet_2.cell(row = 5, column = 3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
             if number == 2:
                 sheet_2.cell(row = 6, column = 2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
                 sheet_2.cell(row = 6, column = 3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
-                #sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0] + "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
-                #sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT" + "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0] + "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
+                sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT" + "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
         if number >= 3 and number <=9:
             sheet_2.cell(row = 6, column = 2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1] + "TTCT"
             sheet_2.cell(row = 6, column = 3).value = revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
