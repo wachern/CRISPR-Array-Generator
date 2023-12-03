@@ -70,13 +70,9 @@ class Array(object):
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
         sheet_1.cell(row=1 , column=1).value = "gRNAs"
-        sheet_1.cell(row=1 , column=2).value = "self-target error
-                                                (TTC cut site within
-                                                 gRNA)"
-        sheet_1.cell(row=1 , column=3).value = "length error 
-                                                (>24 nucleotides)"
-        sheet_1.cell(row=1 , column=4).value = "length error 
-                                                (<20 nucleotides)"
+        sheet_1.cell(row=1 , column=2).value = "self-target error (TTC cut site within gRNA)"
+        sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
+        sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
         for grna in grnas:
             cell = cell + 1
             #Removing CRISPR cut site within gRNA if present
@@ -121,23 +117,16 @@ class Array(object):
         sheet_2.cell(row=4 , column=3).value = "Rev oligos:"
         number = len(new_grnas)
         if number > 9:
-            sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs
-                                                    were identified. 
-                                                    Please input 9 or
-                                                    fewer gRNAs per
-                                                    array."
+            sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
         for grna in new_grnas:
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
         if number >= 1 and number <= 9:
-            sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" 
-                                                    + new_grnas[0]
+            sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
             if number == 1:
-                sheet_2.cell(row = 5, column = 3).value = "CGTT" + revcomp_grnas[0]
-                                                        + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT"
-                                                        + new_grnas[0]
+                sheet_2.cell(row = 5, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
                 sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
         if number >= 2 and number <=9:
             sheet_2.cell(row = 5, column = 3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
