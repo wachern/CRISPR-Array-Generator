@@ -54,7 +54,7 @@ class Array(object):
         Returns:
             file: excel file listing processed gRNAs and errors if found
         """
-        grnas = extract_excel_data(excel_file)
+        grnas = array.extract_excel_data(excel_file)
         new_grnas = []
         cell = 0
         # Creating the output workbook object
@@ -96,7 +96,7 @@ class Array(object):
             excel file listing ready-to-order oligos for each set of gRNAs and any errors if present
         """
         revcomp_grnas = []
-        new_grnas = check_grna(excel_file)
+        new_grnas = array.check_grna(excel_file)
         excel_output = load_workbook("grnacheck.xlsx")
         sheet_2 = excel_output.create_sheet("Array")
         sheet_2.cell(row=1 , column=2).value = "Full array fwd:"
