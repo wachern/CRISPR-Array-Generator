@@ -111,7 +111,7 @@ class Array(object):
             sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
         for grna in new_grnas:
-            grnarev = getReverseComplement(grna)
+            grnarev = get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
         if number >= 1 and number <= 9:
             sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
