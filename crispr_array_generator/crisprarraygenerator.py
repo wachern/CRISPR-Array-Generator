@@ -32,7 +32,7 @@ class Array(object):
         # Isolating DNA values
         for input in exceldata:
             valid_dna = all(i in cn.VALID_DNA for i in input)
-            if valid_dna == True:
+            if valid_dna==True:
                 grnas.append(input)
         return grnas
 
@@ -80,15 +80,15 @@ class Array(object):
             grna = grna.removeprefix("ttc")
             #Checking if any TTC left within gRNA
             if 'ttc' in grna or 'TTC' in grna:
-                sheet_1.cell(row = cell+1, column = 2).value = "X"
+                sheet_1.cell(row=cell+1 , column=2).value = "X"
             #Checking gRNA length
             if len(grna) > 24:
-                sheet_1.cell(row = cell+1, column = 3).vale = "X"
+                sheet_1.cell(row=cell+1 , column=3).vale = "X"
             if len(grna) < 20:
-                c3 = sheet_1.cell(row = cell+1, column = 4).value = "X"
+                c3 = sheet_1.cell(row=cell+1 , column=4).value = "X"
             new_grnas.append(grna)
             #Putting new gRNAs into the output excel file
-            c3 = sheet_1.cell(row = cell+1, column = 1)
+            c3 = sheet_1.cell(row=cell+1 , column=1)
             c3.value = grna
         excel_output.save('grnacheck.xlsx')
         return(new_grnas)
@@ -112,73 +112,82 @@ class Array(object):
         sheet_2.cell(row=1 , column=3).value = "Full array rev:"
         sheet_2.cell(row=1 , column=5).value = "Errors:"
         sheet_2.cell(row=4 , column=1).value = "gRNA #:"
-        #!!!!create a loop to make A5-A13 1-9!!!!
         sheet_2.cell(row=4 , column=2).value = "Fwd oligos:"
         sheet_2.cell(row=4 , column=3).value = "Rev oligos:"
         number = len(new_grnas)
+        for value in range(1, number+1):
+            s2.cell(row=value + 4, column=1).value = value
         if number > 9:
-            sheet_2.cell(row = 2, column = 5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
+            sheet_2.cell(row=2, column=5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
         for grna in new_grnas:
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
-        if number >= 1 and number <= 9:
-            sheet_2.cell(row = 5, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
-            if number == 1:
-                sheet_2.cell(row = 5, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
-                sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-        if number >= 2 and number <=9:
-            sheet_2.cell(row = 5, column = 3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-            if number == 2:
-                sheet_2.cell(row = 6, column = 2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
-                sheet_2.cell(row = 6, column = 3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row = 2, column = 2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0] + "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
-                sheet_2.cell(row = 2, column = 3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT" + "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-        if number >= 3 and number <=9:
-            sheet_2.cell(row = 6, column = 2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1] + "TTCT"
-            sheet_2.cell(row = 6, column = 3).value = revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
-            sheet_2.cell(row = 7, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[2]
-            if number == 3:
-                sheet_2.cell(row = 7, column = 3).value = "CGTT" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
-                #input full array
-        if number >= 4 and number <=9:
-            sheet_2.cell(row = 7, column = 3).value = "ATTG" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
-            if number == 4:
-                sheet_2.cell(row = 8, column = 2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3]
-                sheet_2.cell(row = 8, column = 3).value = "CGTT" + revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
-                #input full array
-        if number >= 5 and number <=9:
-            sheet_2.cell(row = 8, column = 2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3] + "TATG"
-            sheet_2.cell(row = 8, column = 3).value =  revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
-            sheet_2.cell(row = 9, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[4]
-            if number == 5:
-                sheet_2.cell(row = 9, column = 3).value = "CGTT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
-                #input full array
-        if number >= 6 and number <= 9:
-            sheet_2.cell(row = 9, column = 3).value = "TTCT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
-            if number == 6:
-                sheet_2.cell(row = 10, column = 2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5]
-                sheet_2.cell(row = 10, column = 3).value = "CGTT" + revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
-                #input full array
-        if number >=7 and number <=9:
-            sheet_2.cell(row = 10, column = 2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5] + "TACA"
-            sheet_2.cell(row = 10, column = 3).value = revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
-            sheet_2.cell(row = 11, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[6]
-            if number == 7:
-                sheet_2.cell(row = 11, column = 3).value = "CGTT" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
-                #input full array
-        if number >= 8 and number <=9:
-            sheet_2.cell(row = 11, column = 3).value = "CAGC" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
-            if number == 8:
-                sheet_2.cell(row = 12, column = 2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7]
-                sheet_2.cell(row = 12, column = 3).value = "CGTT" + revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
-                #inputfullarray
-        if number == 9:
-            sheet_2.cell(row = 12, column = 2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7] + "GAGT"
-            sheet_2.cell(row = 12, column = 3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
-            sheet_2.cell(row = 13, column = 2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
-            sheet_2.cell(row = 13, column = 2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
+        if number>=1 and number<=9:
+            F1 = sheet_2.cell(row=5 , column=2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
+            if number==1:
+                R11 = sheet_2.cell(row=5 , column=3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = F1
+                sheet_2.cell(row=2 , column=3).value = R11
+        if number>=2 and number<=9:
+            R1 = sheet_2.cell(row=5 , column=3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+            if number==2:
+                F22 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
+                R22 = sheet_2.cell(row=6 , column=3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = F1 + F22
+                sheet_2.cell(row=2 , column=3).value = R22 + R1
+        if number>=3 and number<=9:
+            F2 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1] + "TTCT"
+            R2 = sheet_2.cell(row=6 , column=3).value = revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
+            F3 = sheet_2.cell(row=7 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[2]
+            if number==3:
+                R33 = sheet_2.cell(row=7 , column=3).value = "CGTT" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3
+                sheet_2.cell(row=2 , column=3).value = R33 + R2 + R1
+        if number>=4 and number<=9:
+            R3 = sheet_2.cell(row=7 , column=3).value = "ATTG" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
+            if number==4:
+                F44 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3]
+                R44 = sheet_2.cell(row=8 , column=3).value = "CGTT" + revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F44
+                sheet_2.cell(row=2 , column=3).value = R44 + R3 + R2 + R1
+        if number>=5 and number<=9:
+            F4 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3] + "TATG"
+            R4 = sheet_2.cell(row=8 , column=3).value =  revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
+            F5 = sheet_2.cell(row=9 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[4]
+            if number==5:
+                R55 = sheet_2.cell(row=9, column=3).value = "CGTT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5
+                sheet_2.cell(row=2 , column=3).value = R55 + R4 + R3 + R2 + R1
+        if number>=6 and number<=9:
+            R5 = sheet_2.cell(row=9 , column=3).value = "TTCT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
+            if number==6:
+                F66 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5]
+                R66 = sheet_2.cell(row=10 , column=3).value = "CGTT" + revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F66
+                sheet_2.cell(row=2 , column=3).value = R66 + R5 + R4 + R3 + R2 + R1
+        if number>=7 and number<=9:
+            F6 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5] + "TACA"
+            R6 = sheet_2.cell(row=10 , column=3).value = revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
+            F7 = sheet_2.cell(row=11 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[6]
+            if number==7:
+                R77 = sheet_2.cell(row=11 , column=3).value = "CGTT" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7
+                sheet_2.cell(row=2 , column=3).value = R77 + R6 + R5 + R4 + R3 + R2 + R1
+        if number>=8 and number<=9:
+            R7 = sheet_2.cell(row=11, column=3).value = "CAGC" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
+            if number==8:
+                F88 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7]
+                R88 = sheet_2.cell(row=12 , column=3).value = "CGTT" + revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F88
+                sheet_2.cell(row=2 , column=3).value = R88 + R7 + R6 + R5 + R4 + R3 + R2 + R1
+        if number==9:
+            F8 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7] + "GAGT"
+            R8 = sheet_2.cell(row=12 , column=3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
+            F9 = sheet_2.cell(row=13 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
+            R9 = sheet_2.cell(row=13 , column=2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
+			sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F8 + F9
+            sheet_2.cell(row=2 , column=3).value = R9 + R8 + R7 + R6 + R5 + R4 + R3 + R2 + R1
         excel_output.save('grnacheck.xlsx')
 
 
