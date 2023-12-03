@@ -116,7 +116,7 @@ class Array(object):
         sheet_2.cell(row=4 , column=3).value = "Rev oligos:"
         number = len(new_grnas)
         for value in range(1, number+1):
-            s2.cell(row=value + 4, column=1).value = value
+            sheet_2.cell(row=value + 4, column=1).value = value
         if number > 9:
             sheet_2.cell(row=2, column=5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
