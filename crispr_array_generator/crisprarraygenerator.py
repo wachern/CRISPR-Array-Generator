@@ -90,7 +90,7 @@ class Array(object):
                 sheet_1.cell(row=cell+1 , column=2).value = "X"
             #Checking gRNA length
             if len(grna) > 24:
-                sheet_1.cell(row=cell+1 , column=3).vale = "X"
+                sheet_1.cell(row=cell+1 , column=3).value = "X"
             if len(grna) < 20:
                 c3 = sheet_1.cell(row=cell+1 , column=4).value = "X"
             new_grnas.append(grna)
