@@ -1,3 +1,8 @@
+"""
+Created: Fall 2023
+Author: Willow Chernoske
+"""
+
 import crispr_array_generator.constants as cn
 import openpyxl
 from openpyxl import load_workbook
