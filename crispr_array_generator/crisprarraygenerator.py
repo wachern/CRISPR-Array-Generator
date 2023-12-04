@@ -49,7 +49,7 @@ class Array(object):
         dna_rev_comp = dna_comp[::-1]
         return ''.join(dna_rev_comp)
 
-    def check_grna(excel_file):
+    def check_grna(grnas):
         """
         Takes gRNAs listed in an excel file and checks them for 
         self-targeting or length errors
@@ -60,7 +60,8 @@ class Array(object):
             file: excel file listing processed gRNAs and errors 
             if found
         """
-        grnas = Array.extract_excel_data(excel_file)
+        if isinstance(grnas, str):
+            grnas = Array.extract_excel_data(grnas)
         new_grnas = []
         cell = 0
         # Creating the output workbook object
@@ -93,7 +94,7 @@ class Array(object):
         excel_output.save('grnacheck.xlsx')
         return(new_grnas)
 
-    def get_array(excel_file):
+    def get_array(grnas):
         """
         Generates ready-to-order oligos from input gRNAs listed on an 
         excel file
@@ -105,7 +106,7 @@ class Array(object):
             gRNAs and any errors if present
         """
         revcomp_grnas = []
-        new_grnas = Array.check_grna(excel_file)
+        new_grnas = Array.check_grna(grnas)
         excel_output = load_workbook("grnacheck.xlsx")
         sheet_2 = excel_output.create_sheet("Array")
         sheet_2.cell(row=1 , column=2).value = "Full array fwd:"
