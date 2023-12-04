@@ -1,4 +1,5 @@
 """
+Checks gRNAs for errors or generates CRISPR arrays from gRNAs 
 Created: Fall 2023
 Author: Willow Chernoske
 """
