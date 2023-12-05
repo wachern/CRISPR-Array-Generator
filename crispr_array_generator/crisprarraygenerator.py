@@ -10,6 +10,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.utils import column_index_from_string
+from openpyxl.styles import Font
 
 
 class Array(object):
@@ -87,7 +88,7 @@ class Array(object):
             if valid_dna==False:
                 grnas.remove(grna)  
         new_grnas = []
-        cell = 0
+        row = 1
         # Creating the output workbook object
         excel_output = Workbook()
         sheet_1 = excel_output.create_sheet("gRNAcheck")
@@ -97,19 +98,21 @@ class Array(object):
         sheet_1.cell(row=1 , column=1).value = "gRNAs"
         sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
         sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
+        for cell in sheet_1["1:1"]:
+            cell.font = Font(bold = True)
         for grna in grnas:
-            cell = cell + 1
+            row = row + 1
             #Removing CRISPR cut site within gRNA if present
             grna = grna.removeprefix("TTC")
             grna = grna.removeprefix("ttc")
             #Checking gRNA length
             if len(grna) > 24:
-                sheet_1.cell(row=cell+1 , column=3).value = "X"
+                sheet_1.cell(row=row , column=3).value = "X"
             if len(grna) < 20:
-                c3 = sheet_1.cell(row=cell+1 , column=4).value = "X"
+                c3 = sheet_1.cell(row=row , column=4).value = "X"
             new_grnas.append(grna)
             #Putting new gRNAs into the output excel file
-            c3 = sheet_1.cell(row=cell+1 , column=1)
+            c3 = sheet_1.cell(row=row , column=1)
             c3.value = grna
         excel_output.save('grnacheck.xlsx')
         Array.make_columns_best_fit('grnacheck')
@@ -139,6 +142,12 @@ class Array(object):
         number = len(new_grnas)
         for value in range(1, number+1):
             sheet_2.cell(row=value + 4, column=1).value = value
+       for cell in sheet_2["1:1"]:
+            cell.font = Font(bold = True)
+        for cell in sheet_2["4:4"]:
+            cell.font = Font(bold = True)
+        for cell in sheet_2["A:A"]:
+            cell.font = Font(bold = True)
         if number > 9:
             sheet_2.cell(row=2, column=5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
         #Creating array oligos and inserting them into "grnacheck.xlsx"
