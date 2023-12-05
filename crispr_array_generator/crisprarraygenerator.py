@@ -142,7 +142,7 @@ class Array(object):
         number = len(new_grnas)
         for value in range(1, number+1):
             sheet_2.cell(row=value + 4, column=1).value = value
-       for cell in sheet_2["1:1"]:
+        for cell in sheet_2["1:1"]:
             cell.font = Font(bold = True)
         for cell in sheet_2["4:4"]:
             cell.font = Font(bold = True)
