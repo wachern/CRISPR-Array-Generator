@@ -41,6 +41,6 @@ create an array or input it directly into the get_array function:
 `grnas = ['grna1', 'grna2', ..., 'graN'] ; Array.get_array(grnas)`
 
 # Common errors
-Not all gRNAs show up in output file? Check that your guides only include nucleotide bases (ATCG or atcg). The program automatically removes non-valid DNA inputs.
+- Not all gRNAs show up in output file? Check that your guides only include nucleotide bases (ATCG or atcg). The program automatically removes non-valid DNA inputs.
 
 Run into a problem that's not addressed here? Add an issue to the repository or email the author at wachern@uw.edu.
