@@ -91,7 +91,7 @@ class Array(object):
         row = 1
         # Creating the output workbook object
         excel_output = Workbook()
-        sheet_1 = excel_output.create_sheet("gRNAcheck")
+        sheet_1 = excel_output.create_sheet("")
         if 'Sheet' in excel_output.sheetnames:
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
@@ -114,8 +114,8 @@ class Array(object):
             #Putting new gRNAs into the output excel file
             c3 = sheet_1.cell(row=row , column=1)
             c3.value = grna
-        excel_output.save('grnacheck.xlsx')
-        Array.make_columns_best_fit('grnacheck')
+        excel_output.save('.xlsx')
+        Array.make_columns_best_fit('')
         return(new_grnas)
 
     def get_array(grnas):
@@ -131,7 +131,7 @@ class Array(object):
         """
         revcomp_grnas = []
         new_grnas = Array.check_grna(grnas)
-        excel_output = load_workbook("grnacheck.xlsx")
+        excel_output = load_workbook("array_report.xlsx")
         sheet_2 = excel_output.create_sheet("Array")
         sheet_2.cell(row=1 , column=2).value = "Full array fwd:"
         sheet_2.cell(row=1 , column=3).value = "Full array rev:"
@@ -150,7 +150,7 @@ class Array(object):
             cell.font = Font(bold = True)
         if number > 9:
             sheet_2.cell(row=2, column=5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
-        #Creating array oligos and inserting them into "grnacheck.xlsx"
+        #Creating array oligos and inserting them into "array_report.xlsx"
         for grna in new_grnas:
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
@@ -219,7 +219,7 @@ class Array(object):
             R9 = sheet_2.cell(row=13 , column=2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
             sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F8 + F9
             sheet_2.cell(row=2 , column=3).value = R9 + R8 + R7 + R6 + R5 + R4 + R3 + R2 + R1
-        excel_output.save('grnacheck.xlsx')
-        Array.make_columns_best_fit('grnacheck')
+        excel_output.save('array_report.xlsx')
+        Array.make_columns_best_fit('array_report')
 
 
