@@ -68,6 +68,11 @@ class Array(object):
         """
         if isinstance(grnas, str):
             grnas = Array.extract_excel_data(grnas)
+        if isinstance(grnas, list):
+            for grna in grnas:
+                valid_dna = all(i in cn.VALID_DNA for i in grna)
+            if valid_dna==False:
+                grnas.remove(grna)  
         new_grnas = []
         cell = 0
         # Creating the output workbook object
@@ -77,7 +82,6 @@ class Array(object):
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
         sheet_1.cell(row=1 , column=1).value = "gRNAs"
-        sheet_1.cell(row=1 , column=2).value = "self-target error (TTC cut site within gRNA)"
         sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
         sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
         for grna in grnas:
@@ -85,9 +89,6 @@ class Array(object):
             #Removing CRISPR cut site within gRNA if present
             grna = grna.removeprefix("TTC")
             grna = grna.removeprefix("ttc")
-            #Checking if any TTC left within gRNA
-            if 'ttc' in grna or 'TTC' in grna:
-                sheet_1.cell(row=cell+1 , column=2).value = "X"
             #Checking gRNA length
             if len(grna) > 24:
                 sheet_1.cell(row=cell+1 , column=3).value = "X"
