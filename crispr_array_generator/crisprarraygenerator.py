@@ -8,6 +8,8 @@ import crispr_array_generator.constants as cn
 import openpyxl
 from openpyxl import load_workbook
 from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
+from openpyxl.utils import column_index_from_string
 
 
 class Array(object):
@@ -55,6 +57,17 @@ class Array(object):
         dna_rev_comp = dna_comp[::-1]
         return ''.join(dna_rev_comp)
 
+    def make_columns_best_fit(excel_file):
+        excel_file = excel_file+".xlsx"
+        workbook = load_workbook(excel_file)
+        for sheet_name in workbook.sheetnames:
+            for column_cells in workbook[sheet_name].columns:
+                new_column_length = max(len(str(cell.value)) for cell in column_cells)
+                new_column_letter = (get_column_letter(column_cells[0].column))
+                if new_column_length > 0:
+                    workbook[sheet_name].column_dimensions[new_column_letter].width = new_column_length*1.23
+        workbook.save(excel_file)
+
     def check_grna(grnas):
         """
         Takes gRNAs listed in an excel file and checks them for 
@@ -99,6 +112,7 @@ class Array(object):
             c3 = sheet_1.cell(row=cell+1 , column=1)
             c3.value = grna
         excel_output.save('grnacheck.xlsx')
+        Array.make_columns_best_fit('grnacheck')
         return(new_grnas)
 
     def get_array(grnas):
@@ -197,5 +211,6 @@ class Array(object):
             sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F8 + F9
             sheet_2.cell(row=2 , column=3).value = R9 + R8 + R7 + R6 + R5 + R4 + R3 + R2 + R1
         excel_output.save('grnacheck.xlsx')
+        Array.make_columns_best_fit('grnacheck')
 
 
