@@ -42,5 +42,6 @@ create an array or input it directly into the get_array function:
 
 # Common errors
 - Not all gRNAs showing up in output file? Check that your guides only include nucleotide bases (ATCG or atcg). The program automatically removes non-valid DNA inputs.
+- Input file not loading? Check that it is a .xlsx file. This is the only file type currently accepted.
 
 Run into a problem that's not addressed here? Add an issue to the repository or email the author at wachern@uw.edu.
