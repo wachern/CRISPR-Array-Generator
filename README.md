@@ -13,14 +13,14 @@ gRNAs can be inputted as an array or within an excel file. You may check as many
 
 The function will output an excel file "grnacheck.xlsx" with all processed gRNAs and errors if present listed on the first sheet "gRNAcheck." If using google colaboratory, this will show up under the left "Files" tab. You may need to refresh the files in order to see the output file.
 
-## Inputting an excel file
+### Inputting an excel file
 Upload the file to your python environment of choice. For example, if using google colaboratory, you can call:
 `from google.colab import files ; uploaded = files.upload()`
 
 Input the name of your excel file (exclusing the ".xlsx") into the check_grna function:
 `Array.check_grna('excelfile')`
 
-## Inputting an array
+### Inputting an array
 create an array or input it directly into the get_array function:
 `grnas = ['grna1', 'grna2', ..., 'graN'] ; Array.check_grna(grnas)`
 
@@ -29,14 +29,14 @@ gRNAs can be inputted as an array or within an excel file. You may add up to nin
 
 The function will output an excel file "grnacheck.xlsx" with all processed gRNAs and errors if present listed on the first sheet "gRNAcheck." Array oligonucleotides and the full array sequence will be listed on the second sheet "Array." If using google colaboratory, this will show up under the left "Files" tab. You may need to refresh the files in order to see the output file.
 
-## Inputting an excel file
+### Inputting an excel file
 Upload the file to your python environment of choice. For example, if using google colaboratory, you can call:
 `from google.colab import files ; uploaded = files.upload()`
 
 Input the name of your excel file (exclusing the ".xlsx") into the check_grna function:
 `Array.get_array('excelfile')`
 
-## Inputting an array
+### Inputting an array
 create an array or input it directly into the get_array function:
 `grnas = ['grna1', 'grna2', ..., 'graN'] ; Array.get_array(grnas)`
 
