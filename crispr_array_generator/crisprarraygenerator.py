@@ -90,8 +90,8 @@ class Array(object):
         new_grnas = []
         row = 1
         # Creating the output workbook object
-        excel_output = Workbook()
-        sheet_1 = excel_output.create_sheet("")
+        excel_output = Workbook(array_report)
+        sheet_1 = excel_output.create_sheet("grnacheck")
         if 'Sheet' in excel_output.sheetnames:
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
@@ -114,8 +114,8 @@ class Array(object):
             #Putting new gRNAs into the output excel file
             c3 = sheet_1.cell(row=row , column=1)
             c3.value = grna
-        excel_output.save('.xlsx')
-        Array.make_columns_best_fit('')
+        excel_output.save('array_report.xlsx')
+        Array.make_columns_best_fit('array_report')
         return(new_grnas)
 
     def get_array(grnas):
