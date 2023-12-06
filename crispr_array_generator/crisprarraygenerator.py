@@ -59,6 +59,14 @@ class Array(object):
         return ''.join(dna_rev_comp)
 
     def make_columns_best_fit(excel_file):
+        """
+        Formats columns in excel files to the width of the text
+        in each cell
+        Args:
+            string: name of excel file
+        Returns:
+            file: excel file with best fit column widths
+        """
         excel_file = excel_file+".xlsx"
         workbook = load_workbook(excel_file)
         for sheet_name in workbook.sheetnames:
