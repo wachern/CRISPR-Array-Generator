@@ -35,6 +35,6 @@ jobs:
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 password: ${{ secrets.test_pypi_password }}
-                repository_url: https://github.com/wachern/crispr_array_generator.git
+                repository_url: https://github.com/wachern/crispr_array_generator
 
             
