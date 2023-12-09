@@ -4,7 +4,7 @@ Author: Willow Chernoske
 """
 
 import unitest
-from from crispr_array_generator.crisprarraygenerator import Array
+from crispr_array_generator.crisprarraygenerator import Array
 
 class TestArray(unittest.TestCase):
 
