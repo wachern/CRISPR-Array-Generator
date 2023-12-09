@@ -3,7 +3,7 @@ Created: Fall 2023
 Author: Willow Chernoske
 """
 
-import unitest
+import unittest
 from crispr_array_generator.crisprarraygenerator import Array
 
 class TestArray(unittest.TestCase):
