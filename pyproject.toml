@@ -4,7 +4,7 @@ version = "0.1"
 authors = [{ name = "Willow Chernoske", email = 'wachern@uw.edu" }]
 description = "A tool to automate the design of CRISPR Cas12 arrays"
 readme = README.md
-requires-python = ">=3.8"
+requires-python = ">=3.1"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Liscense :: OSI Approved :: MIT License",
