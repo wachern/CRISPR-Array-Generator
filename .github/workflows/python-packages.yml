@@ -11,29 +11,29 @@ jobs:
             - uses: actions/checkout@main
 
             - name: Initialize Python 3.12
-            uses: actions/setup-python@v1
-            with:
-            python-version: 3.12
+              uses: actions/setup-python@v1
+              with:
+                  python-version: 3.12
 
             - name: Install dependencies
-            run: |
-                    python -m pip install --upgrade pip
-                    pip install flake8
+              run: |
+                python -m pip install --upgrade pip
+                pip install flake8
                         
             - name: Lint with flake8
-            run: |
-                    #stop the build if there are Python syntax errors or undefined names
-                    flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-                    #exit-zero treats all errors as warnings
-                    flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+              run: |
+                #stop the build if there are Python syntax errors or undefined names
+                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                #exit-zero treats all errors as warnings
+                flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
             - name: Build binary wheel and a source tarball
-                run: python setup.py sdist
+              run: python setup.py sdist
 
             - name: Publish distribution to PyPI
-                uses: pypa/gh-action-pypi-publish@master
-                with:
-                    password: ${{}}
-                    repository_url: 
+              uses: pypa/gh-action-pypi-publish@master
+              with:
+                password: ${{ secrets.test_pypi_password }}
+                repository_url: https://github.com/wachern/crispr_array_generator.git
 
             
