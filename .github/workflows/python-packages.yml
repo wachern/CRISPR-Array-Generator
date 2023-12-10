@@ -35,7 +35,7 @@ jobs:
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 username: __token__
-                password: pypi-AgEIcHlwaS5vcmcCJGQ3OTg4ZTlmLWNmNDAtNDZkNy05NTMxLTlmMzEwMmFiOTkzYgACKlszLCIzNjQwNDUxZi02NmQzLTQyNWQtOTUwMC1jM2Y4Mzg4YmJhMWYiXQAABiC2IUipqDWFTlQxskezkNw4j7CG-gYoud-d-7ch77oe0A
+                password: pypi-AgEIcHlwaS5vcmcCJDAzMjBiNDgyLTNiYTQtNDkwMy1hYzg4LWY1NThkMDkyNTRmYwACKlszLCIzNjQwNDUxZi02NmQzLTQyNWQtOTUwMC1jM2Y4Mzg4YmJhMWYiXQAABiAN1bP1rfSw8-OHIWz0PXH51yBiNysRTbqXTcdKttoI8Q
                 repository_url: https://upload.pypi.org/legacy/
 
             
