@@ -6,7 +6,7 @@ CRISPR arrays that encode for multiple CRISPR guide (g)RNAs allow for multiplexe
 This tool can be used to check existing gRNAs or CRISPR arrays for common errors. It can also be used to identify and choose gRNAs from DNA sequences and auto-process gRNAs into ready-to-order array oligonucleotides, simplifying the array generation process to save the user time and effort.
 
 # Set up
-`pip install -U openpyxl ; pip install git+https://github.com/wachern/crispr_array_generator.git ; from crispr_array_generator.crisprarraygenerator import Array`
+`pip install -U openpyxl ; pip install crispr_array_generator ; from crispr_array_generator.crisprarraygenerator import Array`
 
 # Check gRNAs for common errors
 gRNAs can be inputted as an array or within an excel file. You may check as many gRNAs at a time as you'd like.
