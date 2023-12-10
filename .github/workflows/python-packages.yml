@@ -1,4 +1,4 @@
-name: Publish Python Distribtuions to PyPI and TestPyPI
+name: Publish Python Distributions to PyPI and TestPyPI
 
 on:
     workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 username: __token__
-                password: ${{ secrets.PYPI_PASSWORD }}
+                password: pypi-AgEIcHlwaS5vcmcCJGQ3OTg4ZTlmLWNmNDAtNDZkNy05NTMxLTlmMzEwMmFiOTkzYgACKlszLCIzNjQwNDUxZi02NmQzLTQyNWQtOTUwMC1jM2Y4Mzg4YmJhMWYiXQAABiC2IUipqDWFTlQxskezkNw4j7CG-gYoud-d-7ch77oe0A
                 repository_url: https://upload.pypi.org/legacy/
 
             
