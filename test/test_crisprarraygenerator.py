@@ -55,3 +55,11 @@ class TestArray(unittest.TestCase):
         self.assertTrue(os.path.isfile(path))
         if os.path.isfile(path):
             os.remove(path)
+
+    def test_get_array(self):
+        #Function creates an excel file "array_report.xlsx"
+        Array.get_array('testfile')
+        path = os.path.join(os.getcwd(), "array_report.xlsx")
+        self.assertTrue(os.path.isfile(path))
+        if os.path.isfile(path):
+            os.remove(path)
