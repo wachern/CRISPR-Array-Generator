@@ -7,6 +7,9 @@ Author: Willow Chernoske
 import unittest
 import os
 import os.path
+import openpyxl
+from openpyxl import load_workbook
+from openpyxl import Workbook
 from crispr_array_generator.crisprarraygenerator import Array
 
 class TestArray(unittest.TestCase):
@@ -20,6 +23,7 @@ class TestArray(unittest.TestCase):
         self.grnas_input = ['ttcaaaggg', 'cccccc', 'tchtaa']
         self.grnas_output1 = ['aaaggg', 'cccccc']
         self.grnas_output2 = ['ttcaaaggg', 'cccccc']
+        self.array_output = 'CCCTAAATAATTTCTACTGTTGTAGATaaagggTGGCAAATAATTTCTACTGTTGTAGATcccccc'
 
     def test_get_reverse_complement(self):
         # Function outputs valid DNA reverse compliment
@@ -39,6 +43,7 @@ class TestArray(unittest.TestCase):
         result = Array.check_grna(self.grnas_input)
         self.assertIsNotNone(result)
         self.assertEqual(result, self.grnas_output1)
+
         # Function creates an excel file "array_report.xlsx"
         path = os.path.join(os.getcwd(), "array_report.xlsx")
         self.assertTrue(os.path.isfile(path))
@@ -50,16 +55,29 @@ class TestArray(unittest.TestCase):
         result = Array.check_grna('testfile')
         self.assertIsNotNone(result)
         self.assertEqual(result, self.grnas_output1)
+
         # Function creates an excel file "array_report.xlsx"
         path = os.path.join(os.getcwd(), "array_report.xlsx")
         self.assertTrue(os.path.isfile(path))
+
+        # Function correctly identifies length errors
+        output = load_workbook("array_report.xlsx")
+        sheet = output.active
+        result = sheet.cell(row=2 , column=4).value
+        self.assertEqual(result, 'X')
         if os.path.isfile(path):
             os.remove(path)
 
     def test_get_array(self):
-        #Function creates an excel file "array_report.xlsx"
+        # Function creates an excel file "array_report.xlsx"
         Array.get_array('testfile')
         path = os.path.join(os.getcwd(), "array_report.xlsx")
         self.assertTrue(os.path.isfile(path))
+
+        # Function imports correct array elements into output file
+        output = load_workbook("array_report.xlsx")
+        sheet = output['Array']
+        result = sheet.cell(row=2 , column=2).value
+        self.assertEqual(result, self.array_output)
         if os.path.isfile(path):
             os.remove(path)
