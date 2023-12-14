@@ -4,16 +4,19 @@ Created: Fall 2023
 Author: Willow Chernoske
 """
 
-import crispr_array_generator.constants as cn
+
 import openpyxl
 from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.utils import column_index_from_string
 from openpyxl.styles import Font
+import crispr_array_generator.constants as cn
 
 
 class Array(object):
+    """
+    Class containing all functions needed check gRNAs and generate CRISPR arrays
+    """
     def extract_excel_data(excel_file):
         """
         Exracts all data from an excel file and isolates DNA
@@ -41,7 +44,7 @@ class Array(object):
         # Isolating DNA values
         for input in exceldata:
             valid_dna = all(i in cn.VALID_DNA for i in input)
-            if valid_dna==True:
+            if valid_dna:
                 grnas.append(input)
         return grnas
 
@@ -72,7 +75,7 @@ class Array(object):
         for sheet_name in workbook.sheetnames:
             for column_cells in workbook[sheet_name].columns:
                 new_column_length = max(len(str(cell.value)) for cell in column_cells)
-                new_column_letter = (get_column_letter(column_cells[0].column))
+                new_column_letter = get_column_letter(column_cells[0].column)
                 if new_column_length > 0:
                     workbook[sheet_name].column_dimensions[new_column_letter].width = new_column_length*1.23
         workbook.save(excel_file)
@@ -93,7 +96,7 @@ class Array(object):
         if isinstance(grnas, list):
             for grna in grnas:
                 valid_dna = all(i in cn.VALID_DNA for i in grna)
-            if valid_dna==False:
+            if not valid_dna:
                 grnas.remove(grna)  
         new_grnas = []
         row = 1
