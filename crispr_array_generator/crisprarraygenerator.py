@@ -99,7 +99,7 @@ class Array(object):
         row = 1
         # Creating the output workbook object
         excel_output = Workbook()
-        sheet_1 = excel_output.create_sheet("grnacheck")
+        sheet_1 = excel_output.create_sheet("gRNA check")
         if 'Sheet' in excel_output.sheetnames:
             excel_output.remove(excel_output['Sheet'])
         # Creating headers
