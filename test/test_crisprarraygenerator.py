@@ -82,5 +82,5 @@ class TestArray(unittest.TestCase):
         if os.path.isfile(path):
             os.remove(path)
         # The fact that "array_report" was saved with the "Array" sheet verifies
-        # that the make_columns_best_fit function is working since it is
+        # that the make_columns_best_fit function is running since it is
         # required to save the file
