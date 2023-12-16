@@ -7,13 +7,13 @@ Author: Willow Chernoske
 import unittest
 import os
 import os.path
-import openpyxl
 from openpyxl import load_workbook
-from openpyxl import Workbook
 from crispr_array_generator.crisprarraygenerator import Array
 
 class TestArray(unittest.TestCase):
-
+    """
+    Class containing test functions for the Array class functions
+    """
     def setUp(self):
         # Forward and reverse DNA strands
         self.forward = 'atgcgga'
@@ -26,12 +26,18 @@ class TestArray(unittest.TestCase):
         self.array_output = 'CCCTAAATAATTTCTACTGTTGTAGATaaagggTGGCAAATAATTTCTACTGTTGTAGATcccccc'
 
     def test_get_reverse_complement(self):
+        """
+        Test for the get_reverse_complement function
+        """
         # Function outputs valid DNA reverse compliment
         result = Array.get_reverse_complement(self.forward)
         self.assertIsNotNone(result)
         self.assertEqual(result, self.reverse)
 
     def test_extract_excel_data(self):
+        """
+        Test for the extract_excel_data function
+        """
         # Function can access and correctly process DNA data from an excel file
         path = os.path.join(os.getcwd(), "testfile.xlsx")
         self.assertTrue(os.path.isfile(path))
@@ -39,6 +45,9 @@ class TestArray(unittest.TestCase):
         self.assertEqual(result, self.grnas_output2)
 
     def test_check_grna_array_input(self):
+        """
+        Tests for the check_grna function with an array input
+        """
         # Function removes TTC PAM sequence and non-nucleotide characters
         result = Array.check_grna(self.grnas_input)
         self.assertIsNotNone(result)
@@ -51,6 +60,9 @@ class TestArray(unittest.TestCase):
             os.remove(path)
 
     def test_check_grna_excel_input(self):
+        """
+        Tests for the check_grna function with an excel input
+        """
         # Function removes TTC PAM sequence and non-nucleotide characters
         result = Array.check_grna('testfile')
         self.assertIsNotNone(result)
@@ -69,6 +81,9 @@ class TestArray(unittest.TestCase):
             os.remove(path)
 
     def test_get_array(self):
+        """
+        Tests for the get_array and make_columns_best_fit functions
+        """
         # Function creates an excel file "array_report.xlsx"
         Array.get_array('testfile')
         path = os.path.join(os.getcwd(), "array_report.xlsx")
