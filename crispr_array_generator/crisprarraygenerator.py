@@ -228,7 +228,7 @@ class Array(object):
             fwd_8 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7] + "GAGT"
             rev_8 = sheet_2.cell(row=12 , column=3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
             fwd_9 = sheet_2.cell(row=13 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
-            rev_9 = sheet_2.cell(row=13 , column=2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
+            rev_9 = sheet_2.cell(row=13 , column=3).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
             sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5 + fwd_6 + fwd_7 + fwd_8 + fwd_9
             sheet_2.cell(row=2 , column=3).value = rev_9 + rev_8 + rev_7 + rev_6 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         excel_output.save('array_report.xlsx')
