@@ -233,5 +233,3 @@ class Array(object):
             sheet_2.cell(row=2 , column=3).value = rev_9 + rev_8 + rev_7 + rev_6 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         excel_output.save('array_report.xlsx')
         Array.make_columns_best_fit('array_report')
-
-
