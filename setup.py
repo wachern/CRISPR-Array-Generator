@@ -8,7 +8,7 @@ INSTALL_REQUIRES = ['openpyxl']
 def doSetup(install_requires):
     setup(
         name='crispr_array_generator',
-        version='0.3',
+        version='0.4',
         author='Willow Chernoske',
         author_email='wachern@uw.edu',
         url='https://github.com/wachern/crispr_array_generator',
