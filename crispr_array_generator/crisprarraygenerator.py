@@ -166,70 +166,70 @@ class Array(object):
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
         if number>=1 and number<=9:
-            F1 = sheet_2.cell(row=5 , column=2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
+            fwd_1 = sheet_2.cell(row=5 , column=2).value = "CCCTAAATAATTTCTACTGTTGTAGAT" + new_grnas[0]
             if number==1:
-                R11 = sheet_2.cell(row=5 , column=3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row=2 , column=2).value = F1
-                sheet_2.cell(row=2 , column=3).value = R11
+                rev_11 = sheet_2.cell(row=5 , column=3).value = "CGTT" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = fwd_1
+                sheet_2.cell(row=2 , column=3).value = rev_11
         if number>=2 and number<=9:
-            R1 = sheet_2.cell(row=5 , column=3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
+            rev_1 = sheet_2.cell(row=5 , column=3).value = "GCCA" + revcomp_grnas[0] + "ATCTACAACAGTAGAAATTATTT"
             if number==2:
-                F22 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
-                R22 = sheet_2.cell(row=6 , column=3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row=2 , column=2).value = F1 + F22
-                sheet_2.cell(row=2 , column=3).value = R22 + R1
+                fwd_22 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1]
+                rev_22 = sheet_2.cell(row=6 , column=3).value = "CGTT" + revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_22
+                sheet_2.cell(row=2 , column=3).value = rev_22 + rev_1
         if number>=3 and number<=9:
-            F2 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1] + "TTCT"
-            R2 = sheet_2.cell(row=6 , column=3).value = revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
-            F3 = sheet_2.cell(row=7 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[2]
+            fwd_2 = sheet_2.cell(row=6 , column=2).value = "TGGCAAATAATTTCTACTGTTGTAGAT" + new_grnas[1] + "TTCT"
+            rev_2 = sheet_2.cell(row=6 , column=3).value = revcomp_grnas[1] + "ATCTACAACAGTAGAAATTATTT"
+            fwd_3 = sheet_2.cell(row=7 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[2]
             if number==3:
-                R33 = sheet_2.cell(row=7 , column=3).value = "CGTT" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3
-                sheet_2.cell(row=2 , column=3).value = R33 + R2 + R1
+                rev_33 = sheet_2.cell(row=7 , column=3).value = "CGTT" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3
+                sheet_2.cell(row=2 , column=3).value = rev_33 + rev_2 + rev_1
         if number>=4 and number<=9:
-            R3 = sheet_2.cell(row=7 , column=3).value = "ATTG" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
+            rev_3 = sheet_2.cell(row=7 , column=3).value = "ATTG" + revcomp_grnas[2] + "ATCTACAACAGTAGAAATTATTTAGAA"
             if number==4:
-                F44 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3]
-                R44 = sheet_2.cell(row=8 , column=3).value = "CGTT" + revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F44
-                sheet_2.cell(row=2 , column=3).value = R44 + R3 + R2 + R1
+                fwd_44 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3]
+                rev_44 = sheet_2.cell(row=8 , column=3).value = "CGTT" + revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_44
+                sheet_2.cell(row=2 , column=3).value = rev_44 + rev_3 + rev_2 + rev_1
         if number>=5 and number<=9:
-            F4 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3] + "TATG"
-            R4 = sheet_2.cell(row=8 , column=3).value =  revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
-            F5 = sheet_2.cell(row=9 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[4]
+            fwd_4 = sheet_2.cell(row=8 , column=2).value = "CAATAAATAATTTCTACTGTTGTAGAT" + new_grnas[3] + "TATG"
+            rev_4 = sheet_2.cell(row=8 , column=3).value =  revcomp_grnas[3] + "ATCTACAACAGTAGAAATTATTT"
+            fwd_5 = sheet_2.cell(row=9 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[4]
             if number==5:
-                R55 = sheet_2.cell(row=9, column=3).value = "CGTT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5
-                sheet_2.cell(row=2 , column=3).value = R55 + R4 + R3 + R2 + R1
+                rev_55 = sheet_2.cell(row=9, column=3).value = "CGTT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5
+                sheet_2.cell(row=2 , column=3).value = rev_55 + rev_4 + rev_3 + rev_2 + rev_1
         if number>=6 and number<=9:
-            R5 = sheet_2.cell(row=9 , column=3).value = "TTCT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
+            rev_5 = sheet_2.cell(row=9 , column=3).value = "TTCT" + revcomp_grnas[4] + "ATCTACAACAGTAGAAATTATTTCATA"
             if number==6:
-                F66 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5]
-                R66 = sheet_2.cell(row=10 , column=3).value = "CGTT" + revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F66
-                sheet_2.cell(row=2 , column=3).value = R66 + R5 + R4 + R3 + R2 + R1
+                fwd_66 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5]
+                rev_66 = sheet_2.cell(row=10 , column=3).value = "CGTT" + revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5 + fwd_66
+                sheet_2.cell(row=2 , column=3).value = rev_66 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         if number>=7 and number<=9:
-            F6 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5] + "TACA"
-            R6 = sheet_2.cell(row=10 , column=3).value = revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
-            F7 = sheet_2.cell(row=11 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[6]
+            fwd_6 = sheet_2.cell(row=10 , column=2).value = "AGAAAAATAATTTCTACTGTTGTAGAT" + new_grnas[5] + "TACA"
+            rev_6 = sheet_2.cell(row=10 , column=3).value = revcomp_grnas[5] + "ATCTACAACAGTAGAAATTATTT"
+            fwd_7 = sheet_2.cell(row=11 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[6]
             if number==7:
-                R77 = sheet_2.cell(row=11 , column=3).value = "CGTT" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7
-                sheet_2.cell(row=2 , column=3).value = R77 + R6 + R5 + R4 + R3 + R2 + R1
+                rev_77 = sheet_2.cell(row=11 , column=3).value = "CGTT" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5 + fwd_6 + fwd_7
+                sheet_2.cell(row=2 , column=3).value = rev_77 + rev_6 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         if number>=8 and number<=9:
-            R7 = sheet_2.cell(row=11, column=3).value = "CAGC" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
+            rev_7 = sheet_2.cell(row=11, column=3).value = "CAGC" + revcomp_grnas[6] + "ATCTACAACAGTAGAAATTATTTTGTA"
             if number==8:
-                F88 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7]
-                R88 = sheet_2.cell(row=12 , column=3).value = "CGTT" + revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
-                sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F88
-                sheet_2.cell(row=2 , column=3).value = R88 + R7 + R6 + R5 + R4 + R3 + R2 + R1
+                fwd_88 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7]
+                rev_88 = sheet_2.cell(row=12 , column=3).value = "CGTT" + revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
+                sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5 + fwd_6 + fwd_7 + fwd_88
+                sheet_2.cell(row=2 , column=3).value = rev_88 + rev_7 + rev_6 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         if number==9:
-            F8 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7] + "GAGT"
-            R8 = sheet_2.cell(row=12 , column=3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
-            F9 = sheet_2.cell(row=13 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
-            R9 = sheet_2.cell(row=13 , column=2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
-            sheet_2.cell(row=2 , column=2).value = F1 + F2 + F3 + F4 + F5 + F6 + F7 + F8 + F9
-            sheet_2.cell(row=2 , column=3).value = R9 + R8 + R7 + R6 + R5 + R4 + R3 + R2 + R1
+            fwd_8 = sheet_2.cell(row=12 , column=2).value = "GCTGAAATAATTTCTACTGTTGTAGAT" + new_grnas[7] + "GAGT"
+            rev_8 = sheet_2.cell(row=12 , column=3).value = revcomp_grnas[7] + "ATCTACAACAGTAGAAATTATTT"
+            fwd_9 = sheet_2.cell(row=13 , column=2).value = "AAATAATTTCTACTGTTGTAGAT" + new_grnas[8]
+            rev_9 = sheet_2.cell(row=13 , column=2).value = "CGTT" + revcomp_grnas[8] + "ATCTACAACAGTAGAAATTATTTACTC"
+            sheet_2.cell(row=2 , column=2).value = fwd_1 + fwd_2 + fwd_3 + fwd_4 + fwd_5 + fwd_6 + fwd_7 + fwd_8 + fwd_9
+            sheet_2.cell(row=2 , column=3).value = rev_9 + rev_8 + rev_7 + rev_6 + rev_5 + rev_4 + rev_3 + rev_2 + rev_1
         excel_output.save('array_report.xlsx')
         Array.make_columns_best_fit('array_report')
 
