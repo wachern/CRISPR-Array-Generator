@@ -32,7 +32,7 @@ class Array(object):
         exceldata = []
         grnas = []
         sheet = workbook.active
-        # Changing the layout of each excel cell value 
+        # Changing the layout of each excel cell value
         for value in sheet.iter_rows(values_only=True):
             value = str(value)
             value = value.replace("'" , "")
@@ -96,7 +96,7 @@ class Array(object):
             for grna in grnas:
                 valid_dna = all(i in cn.VALID_DNA for i in grna)
             if not valid_dna:
-                grnas.remove(grna)  
+                grnas.remove(grna)
         new_grnas = []
         row = 1
         # Creating the output workbook object
@@ -126,7 +126,7 @@ class Array(object):
             c3.value = grna
         excel_output.save('array_report.xlsx')
         Array.make_columns_best_fit('array_report')
-        return(new_grnas)
+        return new_grnas
 
     def get_array(grnas):
         """
