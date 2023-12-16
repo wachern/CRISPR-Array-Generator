@@ -27,7 +27,6 @@ class Array(object):
         Returns:
             array: all DNA components listed in the input excel file
         """
-        
         excel_file = excel_file+".xlsx"
         workbook = load_workbook(excel_file)
         exceldata = []
@@ -105,12 +104,12 @@ class Array(object):
         sheet_1 = excel_output.create_sheet("gRNA check")
         if 'Sheet' in excel_output.sheetnames:
             excel_output.remove(excel_output['Sheet'])
-        # Creating headers
         sheet_1.cell(row=1 , column=1).value = "gRNAs"
         sheet_1.cell(row=1 , column=3).value = "length error (>24 nucleotides)"
         sheet_1.cell(row=1 , column=4).value = "length error (<20 nucleotides)"
         for cell in sheet_1["1:1"]:
             cell.font = Font(bold = True)
+        # Processing gRNAs and checking for errors
         for grna in grnas:
             row = row + 1
             #Removing CRISPR cut site within gRNA if present
@@ -122,7 +121,7 @@ class Array(object):
             if len(grna) < 20:
                 c3 = sheet_1.cell(row=row , column=4).value = "X"
             new_grnas.append(grna)
-            #Putting new gRNAs into the output excel file
+            #Putting processed gRNAs into the output excel file
             c3 = sheet_1.cell(row=row , column=1)
             c3.value = grna
         excel_output.save('array_report.xlsx')
@@ -143,6 +142,7 @@ class Array(object):
         revcomp_grnas = []
         new_grnas = Array.check_grna(grnas)
         excel_output = load_workbook("array_report.xlsx")
+        # Setting up the Array sheet
         sheet_2 = excel_output.create_sheet("Array")
         sheet_2.cell(row=1 , column=2).value = "Full array fwd:"
         sheet_2.cell(row=1 , column=3).value = "Full array rev:"
@@ -159,9 +159,10 @@ class Array(object):
             cell.font = Font(bold = True)
         for cell in sheet_2["A:A"]:
             cell.font = Font(bold = True)
+        # Checking for input error
         if number > 9:
             sheet_2.cell(row=2, column=5).value = "More than 9 gRNAs were identified. Please input 9 or fewer gRNAs per array."
-        #Creating array oligos and inserting them into "array_report.xlsx"
+        # Creating array oligos and inserting them into "array_report.xlsx"
         for grna in new_grnas:
             grnarev = Array.get_reverse_complement(grna)
             revcomp_grnas.append(grnarev)
